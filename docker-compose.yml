@@ -21,16 +21,16 @@ services:
 
   # Use root/example as user/password credentials
   mysql:
-    image: mariadb:latest # 도커hub에서 이미지를 받아온다
+    image: jsurf/rpi-mariadb # 도커hub에서 이미지를 받아온다
     container_name: mysql
     restart: unless-stopped  #재시작하지 않음 unless-stopped 어떤 이유로 든지 멈추지 않으면 재시작 하지않음, 멈추면 재시작 
     ports: 
       - 3306:3306  # 포트를 로컬은 4306으로 설정한 이유는 이미 로컬에서 db가 돌아가고 있어서 4306으로 설정 없다면 3306:3306으로 하면 됨
     environment:
-      MYSQL_ROOT_PASSWORD: my-secret-pw  #root 패스워드가 됨 안써도 디폴트라고 하는 듯
-      MYSQL_DATABASE: app_db
-      MYSQL_USER: db_user
-      MYSQL_PASSWORD: db_user_pass
+      MYSQL_ROOT_PASSWORD: secret-password  #root 패스워드가 됨 안써도 디폴트라고 하는 듯
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: username
+      MYSQL_PASSWORD: uesr-secret-password
       SERVICE_TAGS: dev # 옵션 (없어도 무관)
     volumes:
       - ./mysqldata:/var/lib/mysql  # 데이터를 저장하려면 연결해줘야함 #mysql 디렉토리는 만들어야 함
