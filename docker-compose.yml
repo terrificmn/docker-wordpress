@@ -33,7 +33,7 @@ services:
       MYSQL_PASSWORD: db_user_pass
       SERVICE_TAGS: dev # 옵션 (없어도 무관)
     volumes:
-      - ./mysql:/var/lib/mysql  # 데이터를 저장하려면 연결해줘야함 #mysql 디렉토리는 만들어야 함
+      - ./mysqldata:/var/lib/mysql  # 데이터를 저장하려면 연결해줘야함 #mysql 디렉토리는 만들어야 함
     networks: 
       - wordpress
 
