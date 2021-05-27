@@ -14,18 +14,18 @@ services:
       - 80:80   #lccalhost에서 80포트로 docker container 80포트로 통신 
       # 여기도 php를 로컬로 사용하고 있다면 9000:9000 포트를 바꿔줘도 됨
     volumes:
+      - ./default.conf:/etc/apache2/sites-enabled/000-default.conf  #최상위 디렉토리에 default.conf만들기
       - ./src:/var/www/html/   # ./src 는 현재디렉토리부터 src 서브디렉토리를 web service 디렉토리인 /var/www/html/ 연결
     networks: 
       - wordpress
 
   # Use root/example as user/password credentials
-  db:
-    image: mariadb # 도커hub에서 이미지를 받아온다
-    container_name: mariadb
+  mysql:
+    image: mariadb:latest # 도커hub에서 이미지를 받아온다
+    container_name: mysql
     restart: unless-stopped  #재시작하지 않음 unless-stopped 어떤 이유로 든지 멈추지 않으면 재시작 하지않음, 멈추면 재시작 
-    tty: true # db와 통신 가능하게함
     ports: 
-      - 4306:3306  # 포트를 로컬은 4306으로 설정한 이유는 이미 로컬에서 db가 돌아가고 있어서 4306으로 설정 없다면 3306:3306으로 하면 됨
+      - 3306:3306  # 포트를 로컬은 4306으로 설정한 이유는 이미 로컬에서 db가 돌아가고 있어서 4306으로 설정 없다면 3306:3306으로 하면 됨
     environment:
       MYSQL_ROOT_PASSWORD: my-secret-pw  #root 패스워드가 됨 안써도 디폴트라고 하는 듯
       MYSQL_DATABASE: app_db
@@ -39,15 +39,13 @@ services:
 
   phpmyadmin:
     image: phpmyadmin
-    container_name: pma
-    links:
-      - db   # 여기에서 db로 연결했으니 phpmyadmin으로 들어갈때 server를 db라고 하면 됨 ,, 외부에서 연결할때는 고민을 좀 해봐야할 듯
+    container_name: phpmyadmin
     restart: always
     ports:
       - 8080:80
     environment:
       - PMA_ARBITRARY=1
-      - PMA_HOST= db
+      - PMA_HOST= mysql
       - PMA_PORT= 3306
     networks: 
       - wordpress
