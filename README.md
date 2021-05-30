@@ -220,7 +220,9 @@ wordpress database가 보일 것이다
 # 끝
 추가로 docker-compose에 wordpress를 image를 직접 받아서   
 wordpress도 도커 컨테이너로 실행 시킬 수 있는 것 같습니다. 
-즉, wordpress도 도커 이미지가 있습니다
+즉, wordpress도 도커 이미지가 있습니다 
 
-원하시는 분을 try 해보세요~   
+원하시는 분을 try 해보세요~ docker-compose.yml 파일에 wordpress 컨테이너를 추가하고 
+아마 .env 파일의 환경변수도 여기에 쓰면 될 듯 합니다.
+
 감사합니다~ ^^
