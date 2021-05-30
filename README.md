@@ -6,11 +6,13 @@
 ARM 아키텍쳐 아마 32비트 라즈비안 OS 전용 방식입니다~
 
 설치에 앞서 만약 64비트에 사용을 하고 싶다면 docker와 docker-compose는 다른 방식으로 설치되어 합니다.
-[도커 엔진 다운로드-docker-install 방문하기](https://docs.docker.com/engine/install/centos/)
+[도커 엔진 다운로드-docker-install 방문하기](https://docs.docker.com/engine/install/centos/)  
+
 [도커 허브 방문하기](https://hub.docker.com/search?offering=community&operating_system=linux&q=&type=edition)
 이곳에서 원하는 운영체제 치 디스트리뷰션을 선택해서 진행하세요~
 관련 document를 보면 도움이 될 겁니다.
 
+<br>
 
 이제 docker raspberry pi에 설치하기 시작합니다~
 
