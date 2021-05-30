@@ -72,7 +72,7 @@ environment:
       MYSQL_USER: user아이디
       MYSQL_PASSWORD: user패스워드
 ```
-저장한다
+원하는 id와 비밀번호를 입력한 후 저장 해주세요
 
 그리고 숨김파일인 .env 파일도 열어준다
 ```yml
@@ -83,9 +83,9 @@ WORDPRESS_DB_NAME=wordpress
 ```
 
 docker-compose.yml 에서 설정한 것과 같은 user아이디/패스워드를 적는다. 
-DB_HOST도 그대로 두면 된다. 
+DB_HOST는 그대로 둡니다
 
-저장해준다
+저장하고 빠져나오기
 
 
 <br>
@@ -107,12 +107,20 @@ $tar -zxvf wordpress-5.7.2.tar.gz
 직접 다운로드를 받는다  (zip파일과 tar파일을 제공)
 
 압축을 푼 후에 마찬가지로 src 디렉토리 안에 wordpress가 위치하게 이동시켜주면 된다
+(압축 파일명과 디렉토리명은 다를 수 있음에 주의)
+이때는 
+```shell
+$cd ~/Downloads
+$tar -zxvf wordpress-5.7.2.tar.gz
+$mv wordpress ~/Projects/docker-wordpress/src/
+```
 
-이제 권한 바꿔주기
+마지막으로 wordpress 디렉토리 권한 바꿔주기
 ```shell
 $ sudo chown -R www-data:www-data wordpress
 ```
-docker의 php-apache2 컨테이너가 wordpress의 내용을 사용(수정)할 수 있게 소유 권한을 바꿔준다
+docker의 php-apache2 컨테이너가 wordpress의 내용을 사용(수정)할 수 있게 소유 권한을 바꿔준다.
+그래야 wordpress 안의 파일들이 필요할 때 원할하게 수정이 될 수 있다
 
 <br>
 
@@ -126,8 +134,8 @@ $cd ..
 ```shell
 sudo systemctl status docker
 ```
-
-이제 빌드를 한다
+문제가 없고 active (running) 로 잘 실행되고 있다면 q를 누르고 빠져나와 
+도커 빌드를 한다
 ```shell
 $docker-compose build
 ```
@@ -138,7 +146,7 @@ $docker-compose build
 $docker-compose up
 ```
 이것도 다운로드 조금 받고 실행이 된다.
-이때 도커 컨테이너가 실행되면서 특히 mysql 에서는 데이터베이스 및 db사용할 유저등을 최초 생성해 준다
+이때 도커 컨테이너가 실행되면서 특히 이때 mysql 도커 컨테이너에서는 데이터베이스 및 db사용할 유저등을 최초 생성해 준다
 
 <br>
 
